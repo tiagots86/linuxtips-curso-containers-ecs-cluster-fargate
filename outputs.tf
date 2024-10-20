@@ -12,5 +12,5 @@ output "lb_ssm_listener" {
 
 output "internal_load_balancer_dns" {
   description = "O nome do DNS do load balancer interno criado. "
-  value = aws_lb.internal.dns_name
+  value       = aws_lb.internal.dns_name
 }

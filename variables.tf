@@ -89,10 +89,10 @@ variable "cluster_spot_desired_size" {
 }
 
 variable "capacity_providers" {
-  type = list
+  type = list(any)
   default = [
     "FARGATE", "FARGATE_SPOT"
   ]
-  
+
 }
 
