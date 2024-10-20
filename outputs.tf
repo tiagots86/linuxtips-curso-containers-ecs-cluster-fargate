@@ -9,3 +9,8 @@ output "lb_ssm_arn" {
 output "lb_ssm_listener" {
   value = aws_ssm_parameter.lb_lister.id
 }
+
+output "internal_load_balancer_dns" {
+  description = "O nome do DNS do load balancer interno criado. "
+  value = aws_lb.internal.dns_name
+}
