@@ -14,3 +14,8 @@ output "internal_load_balancer_dns" {
   description = "O nome do DNS do load balancer interno criado. "
   value       = aws_lb.internal.dns_name
 }
+
+output "cloudmap_ssm" {
+  description = "ID do Namespace do Service discovery do cluster"
+  value       = aws_ssm_parameter.cloudmap.id
+}
