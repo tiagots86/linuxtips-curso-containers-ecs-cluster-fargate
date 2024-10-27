@@ -3,7 +3,7 @@ resource "aws_security_group" "main" {
   name   = format("%s", var.project_name)
   vpc_id = data.aws_ssm_parameter.vpc.value
 
-  ingress {
+  egress {
     from_port = 0
     to_port   = 0
     protocol  = "-1"
