@@ -19,3 +19,13 @@ output "cloudmap_ssm" {
   description = "ID do Namespace do Service discovery do cluster"
   value       = aws_ssm_parameter.cloudmap.id
 }
+
+output "service_connet_ssm" {
+  description = "ID do Namespace do Service Connect do cluster"
+  value       = aws_ssm_parameter.service_connect.id
+}
+
+output "service_connet_name_ssm" {
+  description = "Nome do Service Connect do cluster"
+  value       = aws_ssm_parameter.service_connect_name.id
+}
