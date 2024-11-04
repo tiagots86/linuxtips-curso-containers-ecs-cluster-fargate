@@ -42,7 +42,7 @@ resource "aws_lb" "vpclink" {
 
 }
 
-resource "aws_alb_target_group" "vpclink" {
+resource "aws_lb_target_group" "vpclink" {
   name        = format("%s-vpc-link", var.project_name)
   port        = 80
   protocol    = "TCP"
