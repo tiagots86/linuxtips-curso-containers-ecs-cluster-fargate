@@ -1,7 +1,6 @@
 resource "aws_security_group" "vpclink" {
   name   = format("%s-vpclink", var.project_name)
   vpc_id = data.aws_ssm_parameter.vpc.value
-
   egress {
     from_port = 0
     to_port   = 0
@@ -23,14 +22,15 @@ resource "aws_security_group_rule" "vpclink_ingress_80" {
 }
 
 resource "aws_lb" "vpclink" {
-  name               = format("%s-vpc-link", var.project_name)
-  internal           = true
+  name     = format("%s-vpc-link", var.project_name)
+  internal = true
+
   load_balancer_type = "network"
 
   subnets = [
     data.aws_ssm_parameter.subnet_private_1a.value,
     data.aws_ssm_parameter.subnet_private_1b.value,
-    data.aws_ssm_parameter.subnet_private_1c.value,
+    data.aws_ssm_parameter.subnet_private_1c.value
   ]
 
   security_groups = [
@@ -39,7 +39,6 @@ resource "aws_lb" "vpclink" {
 
   enable_cross_zone_load_balancing = false
   enable_deletion_protection       = false
-
 }
 
 resource "aws_lb_target_group" "vpclink" {
@@ -53,11 +52,9 @@ resource "aws_lb_target_group" "vpclink" {
   target_health_state {
     enable_unhealthy_connection_termination = false
   }
-
 }
 
 resource "aws_lb_listener" "vpclink" {
-
   load_balancer_arn = aws_lb.vpclink.arn
   port              = 80
   protocol          = "TCP"
@@ -66,7 +63,6 @@ resource "aws_lb_listener" "vpclink" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.vpclink.arn
   }
-
 }
 
 resource "aws_lb_target_group_attachment" "internal_lb" {
@@ -81,5 +77,6 @@ resource "aws_api_gateway_vpc_link" "main" {
   target_arns = [
     aws_lb.vpclink.arn
   ]
-
 }
+
+
