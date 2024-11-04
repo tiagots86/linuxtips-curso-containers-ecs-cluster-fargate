@@ -69,8 +69,8 @@ resource "aws_lb_listener" "vpclink" {
 
 }
 
-resource "aws_alb_target_group_attachment" "internal_lb" {
-  target_group_arn = aws_alb_target_group.vpclink.arn
+resource "aws_lb_target_group_attachment" "internal_lb" {
+  target_group_arn = aws_lb_target_group.vpclink.arn
   target_id        = aws_lb.internal.id
   port             = 80
 }
